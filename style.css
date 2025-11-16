@@ -6,3 +6,8 @@ html, body {
 canvas {
   display: block;
 }
+
+body {
+text-size-adjust: 90px;
+text-align: center;
+}
