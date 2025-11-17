@@ -29,7 +29,7 @@ function setup() {
 }
 
 function draw() {
-  background(255); 
+  background(245, 240, 220); 
   hovered = null;
 
   for (let rowNumber = 0; rowNumber < data.getRowCount(); rowNumber++) {
