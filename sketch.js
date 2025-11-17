@@ -77,6 +77,9 @@ function draw() {
   } else {
     cursor("default");
   }
+
+  drawLegend();
+
 }
 
 function drawSun(x, y, radius, col, alphaVal = 255) {
@@ -102,5 +105,39 @@ function mousePressed() {
   if (hovered) {
     let newURL = "page.html?country=" + hovered.country;
     window.location.href = newURL;
+  }
+}
+
+function drawLegend() {
+  let legendX = width - 100; 
+  let legendY = 10;           
+  let spacing = 50;
+
+  textFont("courier");
+  textSize(14);
+  textAlign(LEFT, CENTER); 
+
+  let sampleValues = [0, maxValue * 0.25, maxValue * 0.5, maxValue * 0.75, maxValue];
+
+  for (let i = 0; i < sampleValues.length; i++) {
+    let val = sampleValues[i];
+    let radius = map(val, 0, maxValue, 5, 50);
+
+
+    let t = val / maxValue;
+    let col;
+    if (t < 0.5) {
+      col = lerpColor(color('#FF0000'), color('#FF69B4'), t * 2);
+    } else {
+      col = lerpColor(color('#FF69B4'), color('#800080'), (t - 0.5) * 2);
+    }
+
+ 
+    fill(col);
+    noStroke();
+    ellipse(legendX, legendY + i * spacing, radius, radius);
+
+    fill(0);
+    text(Math.round(val), legendX + radius / 2 + 5, legendY + i * spacing);
   }
 }
